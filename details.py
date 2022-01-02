@@ -1,0 +1,3 @@
+class TDC:
+    EMAIL = ""
+    PASSWORD = ""
