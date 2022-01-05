@@ -64,13 +64,13 @@ class TDCBot:
             EC.element_to_be_clickable((By.CLASS_NAME, "Select"))
         ).click()
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.ID, id))
+            EC.element_to_be_clickable((By.XPATH, f"//*[contains(@id, '{id}')]"))
         ).click()
 
     def select_subscription_type(self, type):
         sleep(3)
         self.driver.find_element_by_tag_name("body").send_keys(Keys.CONTROL + Keys.HOME)
-        self.complete_dropdown("react-select-3--option-1")
+        self.complete_dropdown("--option-1")
         self.find_button("Videre").click()
         self.complete_dropdown(type)
         sleep(2)
@@ -96,7 +96,7 @@ class TDCBot:
     def setup_subscription(self, number, remark):
         self.select_account()
         self.select_subscription_type(self.plan)
-        self.complete_dropdown("react-select-5--option-2")
+        self.complete_dropdown("--option-2")
         sleep(3)
         self.fill_text_field(1, number)
         sleep(1)
@@ -115,4 +115,4 @@ class TDCBot:
         # submit.click()
         sleep(10)
         self.total_created += 1
-        return f"{number} has been setup with the {self.plan}! {self.total_created}/{len(self.nums)}"
+        return f"{number} has been setup! {self.total_created}/{len(self.nums)}"
